@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app_Jennifer = Flask(__name__ , template_folder='templates')
 
@@ -11,6 +11,16 @@ def rota1():
 def rota2():
     resposta = "<H3>OLÁ. Essa é outra página da rota 2 <H3>"
     return resposta
+
+@app_Jennifer.route("/homepage")
+def homepage():          
+    return render_template ("homepage.html")
+
+@app_Jennifer.route("/usuario")
+def dados_usuario():
+    nome_usuario="Jennifer"
+    dados_usu = {"profissao": "Estagiária", "graduacao":"Sistemas para Internet"}
+    return render_template("usuario.html", nome = nome_usuario, dados = dados_usu)
 
 if __name__ == "__main__":
     app_Jennifer.run(port = 8000)
